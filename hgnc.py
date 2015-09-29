@@ -45,7 +45,9 @@ def fetchEnsemblGeneIdForGeneSymbol(gene):
   # parse content with the json module 
   data = json.loads(content)
   if data['response']['docs']:
-   ensGene = data['response']['docs'][0]['ensembl_gene_id']
+   for ls in data['response']['docs']:
+    if 'ensembl_gene_id' in ls:
+     ensGene = data['response']['docs'][0]['ensembl_gene_id']
   return ensGene
 
 def searchPreviousSymbol(gene):
